@@ -1,0 +1,55 @@
+hostname R2@eth
+buggy
+!
+!
+vrf definition v1
+ exit
+!
+interface ethernet1
+ description R2@eth1 --> R1@eth1
+ vrf forwarding v1
+ ipv4 address 20.20.1.2 /30
+ ipv6 address 2020:63:1::2 /128
+ no shutdown
+ no log-link-change
+ exit
+!
+interface ethernet2
+ description R2@eth2 --> R3@eth1
+ vrf forwarding v1
+ ipv4 address 20.20.2.1 /30
+ ipv6 address 2020:63:2::1 /128
+ no shutdown
+ no log-link-change
+ exit
+!
+interface ethernet3
+ description R2@eth3 --> R4@eth1
+ vrf forwarding v1
+ ipv4 address 20.20.3.1 /30
+ ipv6 address 2020:20:63::1 /128
+ no shutdown
+ no log-link-change
+ exit
+!
+!
+ipv4 route v1 20.20.4.0 /30 20.20.3.2
+!
+ipv6 route v1 2020:63:4:: /128 2020:63:3::2
+!
+!
+!
+!
+!
+!
+!
+!
+server telnet tel
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
+!
+!
+end

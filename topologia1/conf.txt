@@ -1,0 +1,83 @@
+configuration setup static 5 routers:
+
+tendo como base a rede 20.20 /16 para fazer as outras temos
+
+R1 -> utilizando o 20.20.1.0 /30 para a sub rede criada no R1
+ 
+ETH1:
+ description R1@eth1 --> R2@eth1
+ ipv4 address 20.20.1.1 
+ ipv6 address 2020:63:1::1 
+ 
+rotas estaticas:
+ipv4 route v1 0.0.0.0 /0 20.20.1.2
+ipv6 route v1 :: :: 2020:63:1::2
+ #########################################################################################
+########################################################################################
+R2 -> utilizando o 20.20.2.0 /30, 20.20.3.0 /30 para as redes criadas no R2, e utilizando 20.20.1.0 /30 para a mesma rede do R1
+ 
+ETH1:
+ description R2@eth1 --> R1@eth1
+ ipv4 address 20.20.1.2 
+ ipv6 address 2020:63:1::2 
+
+ETH2:
+ description R2@eth2 --> R3@eth1
+ ipv4 address 20.20.2.1 
+ ipv6 address 2020:63:2::1 
+ 
+ETH3:
+ description R2@eth3 --> R4@eth1
+ ipv4 address 20.20.3.1 
+ ipv6 address 2020:63:3::1 	
+ 
+rotas estaticas:
+ipv4 route v1 20.20.4.0 /30 20.20.3.2
+ipv6 route v1 2020:63:4:: /128 2020:63:3::2
+ 
+ #########################################################################################
+########################################################################################
+R3 -> utilizando o 20.20.2.0 /30 para a rede criada no R2, 
+ 
+ETH1:
+ description R3@eth1 --> R2@eth2
+ ipv4 address 20.20.2.2 
+ ipv6 address 2020:63:2::2 
+ 
+rotas estaticas:
+ipv4 route v1 0.0.0.0 /0 20.20.2.1
+ipv6 route v1 :: :: 2020:63:2::1
+ 
+ #########################################################################################
+########################################################################################
+R4 -> utilizando 20.20.2.0 /30 para a mesma rede do R2 e utilizando 4 para a rede criada no R4
+ 
+ETH1:
+ description R4@eth1 --> R2@eth3
+ ipv4 address 20.20.3.2 
+ ipv6 address 2020:63:3::2 
+
+ETH2:
+ description R4@eth2 --> R5@eth1
+ ipv4 address 20.20.4.1 
+ ipv6 address 2020:63:4::1 
+ 
+rotas estaticas:
+ipv4 route v1 20.20.1.0 /30 20.20.3.1
+ipv4 route v1 20.20.2.0 /30 20.20.3.1
+!
+ipv6 route v1 2020:63:1:: /128 2020:63:3::1
+ipv6 route v1 2020:63:2:: /128 2020:63:3::1
+ 
+ #########################################################################################
+########################################################################################
+R5 -> utilizando o 20.20.4.0 /30 para a mesma rede do R4 
+ 
+ETH1:
+ description R5@eth1 --> R4@eth2
+ ipv4 address 20.20.4.2 
+ ipv6 address 2020:63:4::2 
+ 
+rotas estaticas:
+ipv4 route v1 0.0.0.0 /0 20.20.4.1
+ipv6 route v1 :: :: 2020:63:4::1
