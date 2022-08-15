@@ -1,0 +1,77 @@
+R1 -> utilizando o 10, 11 e 12 para as redes criadas no r1
+ 
+ETH1:
+ description r1 --> r2
+ ipv4 address 19.19.10.1 
+ ipv6 address 2019:19:10::1 
+
+ETH2:
+ description r1 --> r3
+ ipv4 address 19.19.11.1 
+ ipv6 address 2019:19:11::1 
+ 
+ETH3:
+ description r1 --> r4
+ ipv4 address 19.19.12.1 
+ ipv6 address 2019:19:12::1 	
+
+///////-----------------------------------------------------------------/////////////////
+////---------------------------------------------------------------------------///////// 
+R2 -> utilizando o 20, 21 para as redes criadas no r2, e utilizando 10 para a mesma rede do r1
+ 
+ETH1:
+ description r2 --> r1
+ ipv4 address 19.19.10.2 
+ ipv6 address 2019:19:10::2 
+
+ETH2:
+ description r2 --> r3
+ ipv4 address 19.19.20.1 
+ ipv6 address 2019:19:20::1 
+ 
+ETH3:
+ description r2 --> r4
+ ipv4 address 19.19.21.1 
+ ipv6 address 2019:19:21::1 	
+ 
+ ///////-----------------------------------------------------------------/////////////////
+////---------------------------------------------------------------------------///////// 
+R3 -> utilizando o 30 para as redes criadas no r3, 
+    e utilizando 11 para a mesma rede do r1
+    e utilizando 20 para a mesma rede do r2
+ 
+ETH1:
+ description r3 --> r1
+ ipv4 address 19.19.11.2 
+ ipv6 address 2019:19:11::2 
+
+ETH2:
+ description r3 --> r2
+ ipv4 address 19.19.20.2 
+ ipv6 address 2019:19:20::2 
+ 
+ETH3:
+ description r3 --> r4
+ ipv4 address 19.19.30.1 
+ ipv6 address 2019:19:30::1 
+ 
+  ///////-----------------------------------------------------------------/////////////////
+////---------------------------------------------------------------------------///////// 
+R4 -> utilizando 12 para a mesma rede do r1
+    e utilizando 21 para a mesma rede do r2
+    e utilizando 30 para a mesma rede do r3
+ 
+ETH1:
+ description r4 --> r1
+ ipv4 address 19.19.12.2 
+ ipv6 address 2019:19:12::2 
+
+ETH2:
+ description r4 --> r2
+ ipv4 address 19.19.21.2 
+ ipv6 address 2019:19:21::2 
+ 
+ETH3:
+ description r4 --> r3
+ ipv4 address 19.19.30.2 
+ ipv6 address 2019:19:30::2 
