@@ -1,0 +1,76 @@
+hostname r4-viniciusM
+buggy
+!
+!
+router ospf4 1
+ vrf v1
+ router-id 0.0.0.0
+ area 0 enable
+ redistribute connected
+ exit
+!
+router ospf6 1
+ vrf v1
+ router-id 0.0.0.0
+ area 0 enable
+ redistribute connected
+ exit
+!
+interface template1
+ no description
+ lldp enable
+ vrf forwarding v1
+ ipv4 address dynamic dynamic
+ router ospf4 1 enable
+ router ospf6 1 enable
+ shutdown
+ no log-link-change
+ exit
+!
+int lo0
+ vrf for v1
+ ipv4 addr 20.20.20.4 /32
+ ipv6 addr 2020::4 /128
+ exit
+!
+interface ethernet1
+ description r4@eth1 --> r1@eth3
+ vrf forwarding v1
+ ipv4 address 20.63.3.2 255.255.255.252
+ ipv6 address 2020:63:3::2 ffff:ffff:ffff:ffff::
+ template template1
+ no shutdown
+ no log-link-change
+ exit
+!
+interface ethernet2
+ description r4@eth2 --> r2@eth3
+ vrf forwarding v1
+ ipv4 address 20.63.5.2 255.255.255.252
+ ipv6 address 2020:63:5::2 ffff:ffff:ffff:ffff::
+ template template1
+ no shutdown
+ no log-link-change
+ exit
+!
+interface ethernet3
+ description r4@eth3 --> r3@eth3
+ vrf forwarding v1
+ ipv4 address 20.63.6.2 255.255.255.252
+ ipv6 address 2020:63:6::2 ffff:ffff:ffff:ffff::
+ template template1
+ no shutdown
+ no log-link-change
+ exit
+!
+!
+!
+server telnet tel
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
+!
+!
+end

@@ -1,4 +1,4 @@
-hostname R2@eth
+hostname R2-viniciusM
 buggy
 !
 !

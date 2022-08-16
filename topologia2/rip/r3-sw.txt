@@ -1,4 +1,4 @@
-hostname R3
+hostname r3-viniciusM
 buggy
 !
 !
@@ -16,10 +16,10 @@ router rip6 1
  exit
 !
 interface ethernet1
- description R3@eth1 --> R4@eth1
+ description r3 --> r1
  vrf forwarding v1
- ipv4 address 20.6.6.1 255.255.255.252
- ipv6 address 2020:6:6::1 ffff:ffff:ffff:ffff::
+ ipv4 address 20.63.2.2 255.255.255.252
+ ipv6 address 2020:63:2::2 ffff:ffff:ffff:ffff::
  router rip4 1 enable
  router rip6 1 enable
  no shutdown
@@ -27,10 +27,10 @@ interface ethernet1
  exit
 !
 interface ethernet2
- description R3@eth2 --> R1@eth2
+ description r3 --> r2
  vrf forwarding v1
- ipv4 address 20.6.2.2 255.255.255.252
- ipv6 address 2020:6:2::2 ffff:ffff:ffff:ffff::
+ ipv4 address 20.63.4.2 255.255.255.252
+ ipv6 address 2020:63:4::2 ffff:ffff:ffff:ffff::
  router rip4 1 enable
  router rip6 1 enable
  no shutdown
@@ -38,15 +38,24 @@ interface ethernet2
  exit
 !
 interface ethernet3
- description R3@eth3 --> R2@eth3
+ description r3 --> r4
  vrf forwarding v1
- ipv4 address 20.6.5.2 255.255.255.252
- ipv6 address 2020:6:5::2 ffff:ffff:ffff:ffff::
+ ipv4 address 20.63.6.1 255.255.255.252
+ ipv6 address 2020:63:6::1 ffff:ffff:ffff:ffff::
  router rip4 1 enable
  router rip6 1 enable
  no shutdown
  no log-link-change
  exit
+!
+!
+!
+!
+!
+!
+!
+!
+!
 !
 !
 !
